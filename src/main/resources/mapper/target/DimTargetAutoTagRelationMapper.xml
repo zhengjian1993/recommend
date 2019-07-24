@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjucook.recommend.mapper.target.DimTargetAutoTagRelationMapper">
+    <resultMap id="BaseResultMap" type="com.hjucook.recommend.model.entity.target.DimTargetAutoTagRelation">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="target_id" jdbcType="INTEGER" property="targetId" />
+        <result column="target_type" jdbcType="VARCHAR" property="targetType" />
+        <result column="tag_name" jdbcType="INTEGER" property="tagName" />
+        <result column="weight" jdbcType="DECIMAL" property="weight" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    </resultMap>
+
+    <sql id="table">select target_id, target_type, tag_name, weight from dim_target_auto_tag_relation</sql>
+
+    <select id="listByTarget" resultMap="BaseResultMap">
+        <include refid="table"/>
+        WHERE target_id = #{targetId} AND target_type = #{targetType} ORDER BY weight DESC
+    </select>
+
+    <select id="listByTag" resultMap="BaseResultMap">
+        <include refid="table"/>
+        WHERE tag_name = #{tagName}
+        <if test="targetType != null">
+            AND target_type = #{targetType}
+        </if>
+    </select>
+
+    <select id="randomArticle" resultMap="BaseResultMap">
+        select distinct target_id,target_type
+        from dim_target_auto_tag_relation
+        order by rand() limit #{num};
+    </select>
+</mapper>
