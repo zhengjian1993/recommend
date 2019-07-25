@@ -7,6 +7,7 @@ import com.hjucook.recommend.service.util.TargetKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,13 +25,7 @@ public class OtherRecommendFactory extends BaseRecommendFactory {
 
     @Override
     public List<TargetResponse> recommend(Integer userId, Integer recommendNum) {
-        List<DimTargetTagRelation> relations = dimTargetTagRelationMapper.randomArticle(recommendNum);
-        Set<String> alreadyTargets = userRepetitionHandler.getAlreadyTargets(userId);
-        return relations.stream()
-                .map(v -> TargetKeyUtil.createKey(v.getTargetType(), v.getTargetId()))
-                .filter(v -> !alreadyTargets.contains(v))
-                .map(TargetKeyUtil::getTargetResponse)
-                .collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
 }

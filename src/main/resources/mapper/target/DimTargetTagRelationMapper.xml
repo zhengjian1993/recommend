@@ -26,9 +26,4 @@
         </if>
     </select>
 
-    <select id="randomArticle" resultMap="BaseResultMap">
-        select distinct target_id,target_type
-        from dim_target_tag_relation
-        order by rand() limit #{num};
-    </select>
 </mapper>

@@ -29,11 +29,5 @@ public interface DimTargetTagRelationMapper {
     List<DimTargetTagRelation> listByTag(@Param("tagId") Integer tagId,
                                          @Param("targetType") String targetType);
 
-    /**
-     * 随机查询
-     * @param num
-     * @return
-     */
-    List<DimTargetTagRelation> randomArticle(@Param("num") Integer num);
 
 }
