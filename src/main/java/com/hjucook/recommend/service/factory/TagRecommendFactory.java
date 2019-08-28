@@ -126,7 +126,7 @@ public class TagRecommendFactory extends BaseRecommendFactory {
             //文体id - 文体分数对象
             Map<String, SortModel> targetScoreMap = new HashMap<>(512);
             tagModels.forEach(tag -> {
-                List<TargetModel> targetModels = basePortrayalHandler.listTarget(tag.getKey(), null);
+                List<TargetModel> targetModels = basePortrayalHandler.listTarget(tag.getKey());
                 targetModels.forEach(target ->
                         MapUtil.injectMap(targetScoreMap, target.getKey(), tag.getWeight() * target.getWeight()));
             });

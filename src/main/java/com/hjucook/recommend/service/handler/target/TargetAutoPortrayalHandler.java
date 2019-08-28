@@ -30,22 +30,21 @@ public class TargetAutoPortrayalHandler extends BasePortrayalHandler{
 
     @Override
     public List<TagModel> listTag(String targetKey) {
-        return listTagFromDb(TargetKeyUtil.getTargetType(targetKey), TargetKeyUtil.getTargetId(targetKey));
+        return listTagFromDb(Integer.parseInt(targetKey));
     }
 
     @Override
-    public List<TargetModel> listTarget(String tagKey, String targetType) {
-        return listTargetFromDb(tagKey, targetType);
+    public List<TargetModel> listTarget(String tagKey) {
+        return listTargetFromDb(tagKey);
     }
 
     /**
      * 通过数据库获取问题标签并计算权重
-     * @param targetType
      * @param targetId
      * @return
      */
-    private List<TagModel> listTagFromDb(String targetType, Integer targetId) {
-        List<DimTargetAutoTagRelation> dimTargetAutoTagRelations = dimTargetAutoTagRelationMapper.listByTarget(targetId, targetType);
+    private List<TagModel> listTagFromDb(Integer targetId) {
+        List<DimTargetAutoTagRelation> dimTargetAutoTagRelations = dimTargetAutoTagRelationMapper.listByTarget(targetId);
         if (dimTargetAutoTagRelations.size() > 0) {
             return dimTargetAutoTagRelations.stream()
                     .map(v -> new TagModel(v.getTagName(), v.getWeight()))
@@ -59,8 +58,8 @@ public class TargetAutoPortrayalHandler extends BasePortrayalHandler{
      * @param tagKey
      * @return
      */
-    private List<TargetModel> listTargetFromDb(String tagKey, String targetType) {
-        List<DimTargetAutoTagRelation> dimTargetAutoTagRelations = dimTargetAutoTagRelationMapper.listByTag(tagKey, targetType);
+    private List<TargetModel> listTargetFromDb(String tagKey) {
+        List<DimTargetAutoTagRelation> dimTargetAutoTagRelations = dimTargetAutoTagRelationMapper.listByTag(tagKey);
         if (dimTargetAutoTagRelations.size() > 0){
             return dimTargetAutoTagRelations.stream()
                     .map(v -> new TargetModel(TargetKeyUtil.createKey(v.getTargetType(), v.getTargetId()), v.getWeight()))

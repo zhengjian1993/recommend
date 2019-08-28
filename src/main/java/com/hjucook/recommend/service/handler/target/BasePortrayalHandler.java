@@ -22,8 +22,7 @@ public abstract class BasePortrayalHandler {
     /**
      * 根据标签key获取文体集合
      * @param tagKey 标签key
-     * @param targetType 文体类型，如果为null，则获取所有
      * @return
      */
-    public abstract List<TargetModel> listTarget(String tagKey, String targetType);
+    public abstract List<TargetModel> listTarget(String tagKey);
 }

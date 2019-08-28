@@ -12,24 +12,15 @@
         <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
     </resultMap>
 
-    <sql id="table">select target_id, target_type, tag_name, weight from dim_target_auto_tag_relation</sql>
+    <sql id="table">select target_id, tag_name, weight from dim_target_auto_tag_relation</sql>
 
     <select id="listByTarget" resultMap="BaseResultMap">
         <include refid="table"/>
-        WHERE target_id = #{targetId} AND target_type = #{targetType} ORDER BY weight DESC
+        WHERE target_id = #{targetId} ORDER BY weight DESC
     </select>
 
     <select id="listByTag" resultMap="BaseResultMap">
         <include refid="table"/>
         WHERE tag_name = #{tagName}
-        <if test="targetType != null">
-            AND target_type = #{targetType}
-        </if>
-    </select>
-
-    <select id="randomArticle" resultMap="BaseResultMap">
-        select distinct target_id,target_type
-        from dim_target_auto_tag_relation
-        order by rand() limit #{num};
     </select>
 </mapper>

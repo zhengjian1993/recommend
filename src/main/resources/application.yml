@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://192.168.11.217:3316/dtea?useUnicode=true&characterEncoding=UTF8&useSSL=true
-    username: dtea_app
-    password: GIHI7os=
+    url: jdbc:mysql://127.0.0.1:3306/article?useUnicode=true&characterEncoding=UTF8&useSSL=true
+    username: root
+    password: 7762633
     dbcp2:
       min-idle: 5
       initial-size: 5
@@ -20,8 +20,7 @@ spring:
       max-open-prepared-statements: 20
   redis:
     database: 0
-    host: 192.168.11.217
-    password: nchhdtea
+    host: 127.0.0.1
     timeout: 60000
     pool:
       - max-active: 8

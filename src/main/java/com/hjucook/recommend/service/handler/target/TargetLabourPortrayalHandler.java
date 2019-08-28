@@ -1,3 +1,4 @@
+/*
 
 
 
@@ -20,12 +21,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+*/
 /**
  * 物品画像标签来自人工标签
  *
  * @author zhengjian
  * @date 2018-12-13 13:49
- */
+ *//*
+
 @Service
 public class TargetLabourPortrayalHandler extends BasePortrayalHandler{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -46,12 +49,14 @@ public class TargetLabourPortrayalHandler extends BasePortrayalHandler{
         return listTargetFromDb(tagKey, targetType);
     }
 
-    /**
+    */
+/**
      * 通过数据库获取问题标签并计算权重
      * @param targetType
      * @param targetId
      * @return
-     */
+     *//*
+
     private List<TagModel> listTagFromDb(String targetType, Integer targetId) {
         List<DimTargetTagRelation> dimTargetTagRelations = dimTargetTagRelationMapper.listByTarget(targetId, targetType);
         if (dimTargetTagRelations.size() > 0) {
@@ -64,11 +69,13 @@ public class TargetLabourPortrayalHandler extends BasePortrayalHandler{
         return new ArrayList<>();
     }
 
-    /**
+    */
+/**
      * 通过数据库获取标签相关文体并得到标签在问题中占有权重
      * @param tagKey
      * @return
-     */
+     *//*
+
     private List<TargetModel> listTargetFromDb(String tagKey, String targetType) {
         List<DimTargetTagRelation> dimTargetTagRelations = dimTargetTagRelationMapper.listByTag(Integer.valueOf(tagKey), targetType);
         if (dimTargetTagRelations.size() > 0){
@@ -80,12 +87,14 @@ public class TargetLabourPortrayalHandler extends BasePortrayalHandler{
         return new ArrayList<>();
     }
 
-    /**
+    */
+/**
      * 归一化处理
      * (x - min) / (max - min)
      * @param tagModels
      * @return
-     */
+     *//*
+
     private List<TagModel> normalization(List<TagModel> tagModels) {
         if (Objects.nonNull(tagModels) && tagModels.size() > 0) {
             double w = 0.0;
@@ -106,3 +115,4 @@ public class TargetLabourPortrayalHandler extends BasePortrayalHandler{
         return contentHitTimes * CONTENT_P + titleHitTimes * TITLE_P;
     }
 }
+*/

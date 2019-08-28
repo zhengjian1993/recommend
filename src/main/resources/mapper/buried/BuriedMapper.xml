@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hjucook.recommend.mapper.buried.BuriedMapper">
-    <resultMap id="targetDayClick" type="com.hjucook.recommend.model.entity.buried.TargetDayClick">
-        <result column="days" property="days"/>
-        <result column="target_id" property="targetId"/>
-        <result column="target_type" property="targetType"/>
-        <result column="sum" property="sum"/>
-    </resultMap>
-
     <resultMap id="targetClick" type="com.hjucook.recommend.model.entity.buried.TargetClick">
         <result column="target_id" property="targetId"/>
         <result column="target_type" property="targetType"/>
@@ -22,32 +15,22 @@
     </resultMap>
 
     <select id="listTargetClick" resultMap="targetClick">
-        select target_id, target_type, name, gmt_create from dim_mine_click_record
+        select target_id, name, gmt_create from dim_mine_click_record
         where target_id &gt; 0
         <if test="userId != null">
             and user_id = #{userId}
         </if>
-        and target_type = 'health-article' order by id DESC limit #{num};
+        order by id DESC limit #{num};
     </select>
 
-    <select id="listTargetDayClick" resultMap="targetDayClick">
-        select DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(gmt_create,'%Y%m%d') as days, target_id, target_type, count(1) as `sum` from dim_mine_click_record as c
-        where target_id &gt; 0
-        <if test="userId != null">
-            and user_id = #{userId}
-        </if>
-            and target_type = 'health-article'
-        group by days,target_id,target_type order by days limit #{num};
-    </select>
 
     <select id="listTargetDuration" resultMap="targetDuration">
-        select target_id, target_type, sum(duration) as duration from dim_mine_page_record
+        select target_id, sum(duration) as duration from dim_mine_page_record
         where duration &lt; 10000000 and target_id &gt; 0
         <if test="userId != null">
             and user_id = #{userId}
         </if>
-            and target_type = 'health-article'
-        group by target_id,target_type order by id desc limit #{num};
+        group by target_id order by id desc limit #{num};
     </select>
 
 
