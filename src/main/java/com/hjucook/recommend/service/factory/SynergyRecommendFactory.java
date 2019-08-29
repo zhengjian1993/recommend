@@ -51,7 +51,7 @@ public class SynergyRecommendFactory extends BaseRecommendFactory{
         try {
             List<RecommendedItem> recommendations = recommender.recommend(userId, recommendNum);
             return recommendations.stream()
-                    .map(v -> new TargetResponse((int) v.getItemID(), "health-article", (double) v.getValue()))
+                    .map(v -> new TargetResponse((int) v.getItemID(), (double) v.getValue()))
                     .collect(Collectors.toList());
         } catch (TasteException e) {
             logger.error("user-id :" + userId + "synergy recommend failed because of exception");

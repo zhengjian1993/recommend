@@ -44,9 +44,4 @@ public class RecommendServiceImpl implements RecommendService{
         return recommendResponse;
     }
 
-    @Override
-    public List<TargetResponse> articleRecommend(List<TargetClick> targetClicks) {
-        return tagRecommendFactory.recommend(targetClicks);
-    }
-
 }

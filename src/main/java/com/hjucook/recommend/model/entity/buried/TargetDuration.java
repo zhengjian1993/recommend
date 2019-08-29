@@ -8,7 +8,6 @@ package com.hjucook.recommend.model.entity.buried;
  */
 public class TargetDuration {
     private Integer targetId;
-    private String targetType;
     private Integer duration;
 
     public Integer getTargetId() {
@@ -17,14 +16,6 @@ public class TargetDuration {
 
     public void setTargetId(Integer targetId) {
         this.targetId = targetId;
-    }
-
-    public String getTargetType() {
-        return targetType;
-    }
-
-    public void setTargetType(String targetType) {
-        this.targetType = targetType;
     }
 
     public Integer getDuration() {

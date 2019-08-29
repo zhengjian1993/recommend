@@ -11,18 +11,15 @@ import java.io.Serializable;
 public class TargetResponse implements Serializable{
     private static final long serialVersionUID = 4682847987943289961L;
     private Integer targetId;
-    private String targetType;
     private Double weight;
 
-    public TargetResponse(Integer targetId, String targetType) {
+    public TargetResponse(Integer targetId) {
         this.targetId = targetId;
-        this.targetType = targetType;
         this.weight = 0.0;
     }
 
-    public TargetResponse(Integer targetId, String targetType, Double weight) {
+    public TargetResponse(Integer targetId, Double weight) {
         this.targetId = targetId;
-        this.targetType = targetType;
         this.weight = weight;
     }
 
@@ -32,14 +29,6 @@ public class TargetResponse implements Serializable{
 
     public void setTargetId(Integer targetId) {
         this.targetId = targetId;
-    }
-
-    public String getTargetType() {
-        return targetType;
-    }
-
-    public void setTargetType(String targetType) {
-        this.targetType = targetType;
     }
 
     public Double getWeight() {

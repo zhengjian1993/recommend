@@ -62,7 +62,7 @@ public class TargetAutoPortrayalHandler extends BasePortrayalHandler{
         List<DimTargetAutoTagRelation> dimTargetAutoTagRelations = dimTargetAutoTagRelationMapper.listByTag(tagKey);
         if (dimTargetAutoTagRelations.size() > 0){
             return dimTargetAutoTagRelations.stream()
-                    .map(v -> new TargetModel(TargetKeyUtil.createKey(v.getTargetType(), v.getTargetId()), v.getWeight()))
+                    .map(v -> new TargetModel(v.getTargetId().toString(), v.getWeight()))
                     .collect(Collectors.toList());
         }
         return new ArrayList<>();

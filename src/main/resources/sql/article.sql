@@ -30,3 +30,16 @@ CREATE TABLE `dim_target_auto_tag_relation` (
     `gmt_modified` datetime NOT NULL COMMENT '更新日期',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文体标签关联表（基于自动分词得到）';
+
+# 插入用户埋点记录
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17085, 'click' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17085, 'praise' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17085, 'collect' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17085, 'share' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17321, 'click' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17328, 'click' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17156, 'click' , now(), now());
+INSERT INTO `article`.`dim_mine_click_record`(`user_id`,`target_id`,`name`,`gmt_create`,`gmt_modified`)VALUES(1,17270, 'click' , now(), now());
+
+# 插入用户页面停留时间记录
+INSERT INTO `article`.`dim_mine_page_record`(`user_id`,`target_id`,`start_time`,`end_time`,`duration`,`gmt_create`,`gmt_modified`)VALUES(1,17085,1567048557990,1567048567990,10000,now(),now());

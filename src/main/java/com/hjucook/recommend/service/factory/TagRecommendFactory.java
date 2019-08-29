@@ -78,20 +78,6 @@ public class TagRecommendFactory extends BaseRecommendFactory {
     }
 
     /**
-     * 根据行为记录获取推荐结果
-     * @param targetClicks  行为记录
-     * @return 推荐结果
-     */
-    public List<TargetResponse> recommend(List<TargetClick> targetClicks) {
-        List<TagModel> tagModels = userPortrayalHandler.getUserPortrayal(targetClicks, null, false, basePortrayalHandler);
-        List<SortModel> targets = getUserTargets(tagModels, null);
-        return targets.stream()
-                .limit(100)
-                .map(TargetKeyUtil::getTargetResponse)
-                .collect(Collectors.toList());
-    }
-
-    /**
      * 创造人物推荐池
      * @param userId 用户id
      */
@@ -104,7 +90,7 @@ public class TagRecommendFactory extends BaseRecommendFactory {
 
         logger.info("开始创建人物推荐池 user-id = " + userId);
         List<TagModel> tagModels = userPortrayalHandler.getUserPortrayal(userId, basePortrayalHandler);
-        logger.debug("人物画像为：" + tagModels.toString());
+        logger.info("人物画像为：" + tagModels.toString());
         List<SortModel> targetModels = getUserTargets(tagModels, userId);
         if (tagModels.size() > 0) {
             List<String> targets = targetModels.stream().map(SortModel::getKey).collect(Collectors.toList());

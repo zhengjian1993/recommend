@@ -40,6 +40,7 @@ public class UserPortrayalHandler {
      */
     public List<TagModel> getUserPortrayal(Integer userId, BasePortrayalHandler basePortrayalHandler) {
         List<TargetClick> targetClicks = buriedMapper.listTargetClick(userId, BURIED_LIMIT);
+        System.out.println(targetClicks.size());
         List<TargetDuration> targetDurations = buriedMapper.listTargetDuration(userId, BURIED_LIMIT);
         return getUserPortrayal(targetClicks, targetDurations, true, basePortrayalHandler);
     }

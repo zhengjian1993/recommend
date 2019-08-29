@@ -1,6 +1,7 @@
 package com.hjucook.recommend.common.interceptor;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -29,7 +30,7 @@ import java.util.Properties;
 @Intercepts({
 		@Signature(type = Executor.class, method = "query", args = {
 				MappedStatement.class, Object.class, RowBounds.class,
-				ResultHandler.class }),
+				ResultHandler.class, CacheKey.class, BoundSql.class}),
 		@Signature(type = Executor.class, method = "update", args = {
 				MappedStatement.class, Object.class }) })
 public class PerformanceInterceptor implements Interceptor {

@@ -50,7 +50,6 @@ public abstract class BaseRecommendFactory {
         if (Objects.nonNull(targets) && targets.size() > 0){
             return targets.stream()
                     .map(TargetKeyUtil::getTargetResponse)
-                    .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
         return new ArrayList<>();

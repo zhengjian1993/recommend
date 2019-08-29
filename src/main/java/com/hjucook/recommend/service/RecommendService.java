@@ -21,10 +21,4 @@ public interface RecommendService {
      */
     RecommendResponse articleRecommend(Integer userId, Integer recommendNum);
 
-    /**
-     * 根据行为记录生成推荐大列表
-     * @param targetClicks
-     * @return
-     */
-    List<TargetResponse> articleRecommend(List<TargetClick> targetClicks);
 }

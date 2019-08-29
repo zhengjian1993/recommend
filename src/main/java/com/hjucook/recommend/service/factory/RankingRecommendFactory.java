@@ -11,6 +11,7 @@ import com.hjucook.recommend.service.util.TargetKeyUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,6 @@ import java.util.stream.Collectors;
 public class RankingRecommendFactory extends BaseRecommendFactory {
     @Autowired
     private BuriedMapper buriedMapper;
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
 
     private static final int BURIED_LIMIT = 10000;
     private static final int RANKING_TIMEOUT = 7 * 12 * 60 * 60;

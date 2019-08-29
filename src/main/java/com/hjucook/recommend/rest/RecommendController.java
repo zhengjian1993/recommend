@@ -41,18 +41,6 @@ public class RecommendController {
         return recommendService.articleRecommend(userId, num);
     }
 
-    /**
-     * 根据行为记录推荐
-     * @param targetClicks 用户行为记录
-     */
-    @PostMapping(value="article",produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<TargetResponse> articleRecommend(@Valid @RequestBody List<TargetClick> targetClicks) {
-        long startTime = System.currentTimeMillis();
-        List<TargetResponse> targetResponses = recommendService.articleRecommend(targetClicks);
-        long endTime = System.currentTimeMillis();
-        logger.info("推荐耗时：" + (endTime - startTime));
-        return targetResponses;
-    }
 
     /**
      * 根据用户推荐

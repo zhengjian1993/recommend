@@ -19,35 +19,7 @@ public class TargetKeyUtil {
 
     private static final String REDIS_KEY_PREFIX = "recommend:targets";
 
-    public static String createKey(String targetType, Integer targetId) {
-        return targetType + TARGET_SEPARATOR + targetId;
-    }
 
-    /**
-     * 从key获取数据库的targetType
-     * @param key target全局key
-     * @return
-     */
-    public static String getTargetType(String key) {
-        String[] targets = key.split(TARGET_SEPARATOR);
-        if (targets.length == 2) {
-            return targets[0];
-        }
-        return "";
-    }
-
-    /**
-     * 从key获取数据库targetId
-     * @param key target全局key
-     * @return
-     */
-    public static Integer getTargetId(String key) {
-        String[] targets = key.split(TARGET_SEPARATOR);
-        if (targets.length == 2) {
-            return Integer.valueOf(targets[1]);
-        }
-        return 0;
-    }
 
     /**
      * key转换为target对象
@@ -55,25 +27,9 @@ public class TargetKeyUtil {
      * @return
      */
     public static TargetResponse getTargetResponse(String key) {
-        String[] targets = key.split(TARGET_SEPARATOR);
-        if (targets.length == 2) {
-            return new TargetResponse(Integer.valueOf(targets[1]), targets[0]);
-        }
-        return null;
+        return new TargetResponse(Integer.parseInt(key));
     }
 
-    /**
-     * key转换为target对象
-     * @param sortModel
-     * @return
-     */
-    public static TargetResponse getTargetResponse(SortModel sortModel) {
-        TargetResponse targetResponse = getTargetResponse(sortModel.getKey());
-        if (Objects.nonNull(targetResponse)){
-            targetResponse.setWeight(sortModel.getWeight());
-        }
-        return targetResponse;
-    }
 
     /**
      * 获取推荐列表的redis key

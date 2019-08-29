@@ -25,6 +25,7 @@ public class ScoreUtil {
     private static final String COLLECT_KEYWORD = "collect";
     private static final String SHARE_KEYWORD = "share";
     private static final String PRAISE_KEYWORD = "praise";
+    private static final String CLICK_KEYWORD = "click";
 
     /**
      * 根据记录算分
@@ -37,13 +38,13 @@ public class ScoreUtil {
     public static Map<String, SortModel> getScoreMap(List<TargetClick> targetClicks, List<TargetDuration> targetDurations, TimeScoreEnum timeScoreEnum) {
         Map<String, Integer> targetDurationMap = new HashMap<>(128);
         if (Objects.nonNull(targetDurations) && targetDurations.size() > 0) {
-            targetDurations.forEach(v -> targetDurationMap.put(TargetKeyUtil.createKey(v.getTargetType(), v.getTargetId()), v.getDuration()));
+            targetDurations.forEach(v -> targetDurationMap.put(v.getTargetId().toString(), v.getDuration()));
         }
         //文体id - 文体分数对象
         Map<String, SortModel> targetScoreMap = new HashMap<>(128);
         if (targetClicks.size() > 0) {
             targetClicks.forEach(v -> {
-                String key = TargetKeyUtil.createKey(v.getTargetType(), v.getTargetId());
+                String key = v.getTargetId().toString();
                 double weight = calculateScore(v, timeScoreEnum, targetDurationMap.get(key));
                 MapUtil.injectMap(targetScoreMap, key, weight);
             });
@@ -92,6 +93,10 @@ public class ScoreUtil {
         double initDuration = Objects.isNull(duration) || duration <= 0 ? 1 : Math.pow((double) duration/1000, timeScoreEnum.getDurationExponent());
         double cardinal = (double) diff / timeScoreEnum.getCardinalMillis();
         return k * initDuration / Math.pow(cardinal, timeScoreEnum.getTimeExponent());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
     }
 
 }
